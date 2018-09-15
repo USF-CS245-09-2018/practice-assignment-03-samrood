@@ -45,7 +45,6 @@ public class Practice03Test {
 		Random rand = new Random();
 		double min = 1.0;
 		double max = 100.0;
-
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = min + rand.nextDouble() * (max-min);
 		}
@@ -54,11 +53,25 @@ public class Practice03Test {
 
 	public int find_min_iterative () {
 		// TODO: Fill in this iterative function.
+		int counter = 0;
+		for(int i =1; i< arr.length; i++){
+			if(arr[i]<arr[counter]){
+				counter = i;
+			}
+		}
+		return counter;
 	}
 
 
-	public int find_min_recursive () {
+	public int find_min_recursive (int current_min, int current_index) {
 		// TODO: Fill in this recursive function.
+			if(arr.length-1 <= current_index){
+				return current_min;
+			}
+			if(arr[current_index] < arr[current_min]){
+				current_min = current_index;
+			}
+			return find_min_recursive(current_min, current_index+1);
 	}
 
 
@@ -68,7 +81,7 @@ public class Practice03Test {
 	 */
 	public void print_min() {
 		System.out.println("Iteratively determined min at index " + find_min_iterative());
-		System.out.println("Recursively determined min at index " + find_min_recursive());
+		System.out.println("Recursively determined min at index " + find_min_recursive(0, 0));
 	}
 
 
